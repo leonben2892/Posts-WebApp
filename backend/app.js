@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
@@ -13,6 +14,7 @@ mongoose.connect("mongodb+srv://leon:o10nCdXiKIyQkHr2@cluster0-qtm06.mongodb.net
     console.log("Connection failed!");
   });
 app.use(bodyParser.json());
+app.use("/images", express.static(path.join("backend/images"))); // Any request targeting /images will allow to continue
 
 // This is used to avoid cors (Cross-Origin Resource Sharing) error
 app.use((req, res, next) => {
