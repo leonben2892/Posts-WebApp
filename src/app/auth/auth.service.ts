@@ -35,8 +35,10 @@ export class AuthService {
     // tslint:disable-next-line: object-literal-shorthand
     const authData: AuthData = {email: email, password: password};
     this.http.post('http://localhost:3000/api/user/signup', authData)
-      .subscribe(response => {
-        console.log(response);
+      .subscribe(() => {
+        this.router.navigate(['/']);
+      }, error => {
+        this.authStatusListener.next(false);
       });
   }
 
@@ -57,6 +59,8 @@ export class AuthService {
           this.saveAuthData(this.token, expirationDate, this.userId);
           this.router.navigate(['/']);
         }
+      }, error => {
+        this.authStatusListener.next(false);
       });
   }
 
