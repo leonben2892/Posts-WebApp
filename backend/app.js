@@ -7,7 +7,7 @@ const postsRoutes = require('./routes/posts');
 const userRoutes = require('./routes/user');
 
 const app = express();
-mongoose.connect("mongodb+srv://leon:o10nCdXiKIyQkHr2@cluster0-qtm06.mongodb.net/node-angular?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect("mongodb+srv://leon:" + process.env.MONGO_ATLAS_PW + "@cluster0-qtm06.mongodb.net/node-angular?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true})
   .then(() => {
     console.log("Connected to database!");
   })
